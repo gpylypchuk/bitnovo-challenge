@@ -4,11 +4,11 @@ import { COLORS } from "../../constants";
 import Context from "../context/Context";
 
 export default function ModalCurrency({ isModalVisible, setModalVisible }) {  
-    const { setContext } = React.useContext(Context);
+    const { context, setContext } = React.useContext(Context);
 
     const changeCurrency = (currencySelected) => {
-        setContext({ currency: currencySelected, isModalVisible: false });
         setModalVisible(!isModalVisible);
+        setContext({ ...context, currency: currencySelected, isModalOpen: false });
     };
 
     return (

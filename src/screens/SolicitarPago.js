@@ -3,16 +3,28 @@ import { Pressable, StyleSheet, View, Text } from 'react-native';
 import Header from '../components/Header';
 import Teclado from '../components/Teclado';
 import { COLORS } from '../../constants';
+import Amount from '../components/Amount';
+import Context from '../context/Context';
 
 export default function SolicitarPago() {
+    const { context, setContext } = React.useContext(Context);
+
+    const setZero = () => {
+        setContext({
+            ...context,
+            amount: '',
+        });
+    };
+
     return (
         <View >
             <Header />
+            <Amount />
             <Teclado />
             <Pressable style={styles.buttonPay}>
                 <Text style={styles.textPay}>Solicitar Pago</Text>
             </Pressable>
-            <Pressable style={styles.buttonZero}>
+            <Pressable style={styles.buttonZero} onPress={() => setZero()}>
                 <Text style={styles.textZero}>Reestablecer</Text>
             </Pressable>
         </View>
@@ -30,6 +42,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
         borderWidth: 1,
         borderColor: COLORS.red,
+        marginBottom: '15%',
     },
     textZero: {
         fontSize: 16,
