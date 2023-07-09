@@ -1,16 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { COLORS } from '../../constants';
+import { StyleSheet, View } from 'react-native';
 import Header from '../components/Header';
+import Teclado from '../components/Teclado';
 
 export default function SolicitarPago() {
     return (
         <View>
             <Header />
+            <Teclado />
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-    
-});
