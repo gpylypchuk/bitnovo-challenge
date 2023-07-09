@@ -1,21 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Header from './src/components/Header';
-import SolicitarPago from './src/screens/SolicitarPago';
+import React from 'react';
+import { ContextProvider } from './src/context/Context';
+import Inicio from './src/screens/Inicio';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <SolicitarPago />
-      <StatusBar style="auto" />
-    </View>
+    <ContextProvider>
+      <Inicio />
+    </ContextProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-  },
-});

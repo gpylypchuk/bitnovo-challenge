@@ -1,8 +1,16 @@
 import React from "react";
 import { Modal, Text, View, StyleSheet, Pressable } from "react-native";
 import { COLORS } from "../../constants";
+import Context from "../context/Context";
 
-export default function ModalCurrency({ isModalVisible, setModalVisible }) {
+export default function ModalCurrency({ isModalVisible, setModalVisible }) {  
+    const { setContext } = React.useContext(Context);
+
+    const changeCurrency = (currencySelected) => {
+        setContext({ currency: currencySelected, isModalVisible: false });
+        setModalVisible(!isModalVisible);
+    };
+
     return (
         <>
             <Modal visible={isModalVisible} transparent={true} animationType={'slide'}>
@@ -14,15 +22,15 @@ export default function ModalCurrency({ isModalVisible, setModalVisible }) {
                         <Text style={styles.title}>Elige una moneda</Text>
         
                         <View>
-                            <Pressable style={styles.currencies}>
+                            <Pressable style={styles.currencies} onPress={()=>changeCurrency('EUR')}>
                                 <Text style={styles.title}>EUR</Text>
                                 <Text style={styles.currency}>Euro</Text>
                             </Pressable>
-                            <Pressable style={styles.currencies}>
+                            <Pressable style={styles.currencies} onPress={()=>changeCurrency('GBP')}>
                                 <Text style={styles.title}>GBP</Text>
                                 <Text style={styles.currency}>Libra Esterlina</Text>
                             </Pressable>
-                            <Pressable style={styles.currencies}>
+                            <Pressable style={styles.currencies} onPress={()=>changeCurrency('USD')}>
                                 <Text style={styles.title}>USD</Text>
                                 <Text style={styles.currency}>Dolar Estadounidense</Text>
                             </Pressable>
@@ -78,7 +86,7 @@ const styles = StyleSheet.create({
     },
     modalStyle: {
         marginTop: "auto",
-        marginBottom: "20%",
+        marginBottom: "15%",
         margin: 20,
         paddingTop: 15,
         paddingBottom: 40,

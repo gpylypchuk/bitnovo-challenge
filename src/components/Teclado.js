@@ -40,13 +40,13 @@ export default function Teclado() {
             </View>
             <View style={styles.row}>
                 <Pressable style={styles.button}>
-                    <Text style={styles.text}>.</Text>
+                    <Text style={styles.text}>💸</Text>
                 </Pressable>
                 <Pressable style={styles.button}>
                     <Text style={styles.text}>0</Text>
                 </Pressable>
                 <Pressable style={styles.button}>
-                    <Text style={styles.text}>C</Text>
+                    <Text style={styles.text}>⬅</Text>
                 </Pressable>
             </View>
         </View>
@@ -60,15 +60,14 @@ const styles = StyleSheet.create({
         paddingVertical: 6,
         paddingHorizontal: 10,
         borderRadius: 20,
-        backgroundColor: COLORS.lightgray,
         marginHorizontal: 10,
         marginVertical: 10,
         width: 100,
         height: 50,
     },
     text: {
-        fontSize: 20,
-        lineHeight: 20,
+        fontSize: 25,
+        lineHeight: 39,
         fontWeight: 'bold',
         color: COLORS.text,
     },
@@ -77,6 +76,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     container: {
-        marginTop: "100%",
+        marginTop: "60%",
     },
 });
