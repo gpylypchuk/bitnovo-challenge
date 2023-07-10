@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { COLORS } from "../../constants";
 import Context from "../context/Context";
@@ -6,6 +6,21 @@ import QRCode from "react-native-qrcode-svg";
 
 export default function QrCode({ navigation }) {
   const { context } = useContext(Context);
+  let ws;
+
+  useEffect(() => {
+    if (context.amount !== "") {
+      ws = new WebSocket(
+        `wss://payments.smsdata.com/ws/merchant/${context.identifier}`
+      );
+
+      ws.onmessage = (event) => {
+        if (event.isTrusted === true) {
+          navigation.navigate("PagoProcesado");
+        }
+      };
+    }
+  }, []);
 
   return (
     <View style={styles.container}>

@@ -10,6 +10,7 @@ export function ContextProvider({ children }) {
     payLink: "https://www.bitnovo.com/",
     whatsapp: "",
     mail: "",
+    identifier: "",
   };
 
   const [context, setContext] = useState(initialState);

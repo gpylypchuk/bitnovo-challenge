@@ -34,18 +34,20 @@ export default function Compartir({ navigation }) {
       },
       body: JSON.stringify(BODY_SAMPLE),
     };
+
     const response = await fetch(API_URL, requestOptions);
     const data = await response.json();
+
     setContext({
       ...context,
       payLink: data.web_url,
+      identifier: data.identifier,
     });
-
-    console.log(data);
 
     ws = await new WebSocket(
       `wss://payments.smsdata.com/ws/merchant/${data.identifier}`
     );
+
     ws.onmessage = (event) => {
       if (event.isTrusted === true) {
         navigation.navigate("PagoProcesado");
