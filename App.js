@@ -1,11 +1,31 @@
-import React from 'react';
-import { ContextProvider } from './src/context/Context';
-import Inicio from './src/screens/Inicio';
+import React from "react";
+import { ContextProvider } from "./src/context/Context";
+import Inicio from "./src/screens/Inicio";
+import { StatusBar } from "expo-status-bar";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Compartir from "./src/screens/Compartir";
+import SolicitarPago from "./src/screens/SolicitarPago";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <ContextProvider>
-      <Inicio />
-    </ContextProvider>
+    <NavigationContainer>
+      <ContextProvider>
+        <Stack.Navigator
+          screenOptions={
+            (Headers = {
+              headerShown: false,
+            })
+          }
+        >
+          <Stack.Screen name="Inicio" component={Inicio} />
+          <Stack.Screen name="Compartir" component={Compartir} />
+          <Stack.Screen name="SolicitarPago" component={SolicitarPago} />
+        </Stack.Navigator>
+      </ContextProvider>
+      <StatusBar style="auto" />
+    </NavigationContainer>
   );
 }
