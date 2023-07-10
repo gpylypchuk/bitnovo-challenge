@@ -10,15 +10,16 @@ export default function PagoProcesado({ navigation }) {
       <FontAwesomeIcon
         icon={faCheckCircle}
         size={100}
-        color={COLORS.green}
+        color={"#00B761"}
         style={styles.icon}
       />
       <Text style={styles.text}>Pago procesado</Text>
+      <Text style={styles.subText}>Tu pago se ha confirmado con éxito</Text>
       <Pressable
         style={styles.buttonPay}
         onPress={() => navigation.navigate("Inicio")}
       >
-        <Text style={styles.textPay}>Aceptar</Text>
+        <Text style={styles.textPay}>Finalizar</Text>
       </Pressable>
     </View>
   );
@@ -37,8 +38,15 @@ const styles = StyleSheet.create({
     fontSize: 20,
     lineHeight: 20,
     fontWeight: "bold",
-    color: COLORS.black,
+    color: COLORS.text,
     marginTop: 20,
+  },
+  subText: {
+    fontSize: 16,
+    lineHeight: 20,
+    fontWeight: "400",
+    color: COLORS.textGray,
+    marginTop: 10,
   },
   buttonPay: {
     alignItems: "center",
@@ -48,13 +56,12 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     marginHorizontal: 10,
     marginTop: 20,
-    backgroundColor: COLORS.button,
     marginBottom: "15%",
   },
   textPay: {
     fontSize: 16,
     lineHeight: 20,
-    fontWeight: "bold",
-    color: COLORS.white,
+    fontWeight: "400",
+    color: COLORS.button,
   },
 });

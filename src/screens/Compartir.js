@@ -9,6 +9,11 @@ import { API_URL } from "../../constants";
 export default function Compartir({ navigation }) {
   const { context, setContext } = React.useContext(Context);
 
+  const initialState = {
+    mailOnFocus: false,
+    whatsappOnFocus: false,
+  };
+
   const [state, setState] = React.useState(initialState);
 
   let ws;
@@ -16,11 +21,6 @@ export default function Compartir({ navigation }) {
   const BODY_SAMPLE = {
     expected_output_amount: context.amount,
     input_currency: "ETH_TEST3",
-  };
-
-  const initialState = {
-    mailOnFocus: false,
-    whatsappOnFocus: false,
   };
 
   const fetchPayLink = async () => {
@@ -182,7 +182,7 @@ export default function Compartir({ navigation }) {
           </View>
           <Pressable
             style={styles.buttonQR}
-            onPress={() => navigation.navigate("Inicio")}
+            onPress={() => navigation.navigate("PagoProcesado")}
           >
             <FontAwesomeIcon icon={faQrcode} size={15} color={COLORS.white} />
           </Pressable>
