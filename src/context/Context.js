@@ -7,7 +7,7 @@ export function ContextProvider({ children }) {
     isModalOpen: false,
     currency: "EUR",
     amount: "",
-    payLink: "https://",
+    payLink: "https://www.bitnovo.com/",
     whatsapp: "",
     mail: "",
   };

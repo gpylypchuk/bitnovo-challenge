@@ -3,7 +3,8 @@ import { View, Text, StyleSheet, Pressable, TextInput } from "react-native";
 import { COLORS } from "../../constants";
 import Context from "../context/Context";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faQrcode } from "@fortawesome/free-solid-svg-icons";
+import { faQrcode, faMailForward } from "@fortawesome/free-solid-svg-icons";
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { API_URL, DEVICE_ID } from "../../constants";
 
 export default function Compartir({ navigation }) {
@@ -106,6 +107,7 @@ export default function Compartir({ navigation }) {
       marginLeft: 30,
     },
     squareMail: {
+      flexDirection: "row",
       borderColor: state.mailOnFocus ? COLORS.button : COLORS.lightgray,
       borderWidth: 2,
       borderRadius: 6,
@@ -113,11 +115,17 @@ export default function Compartir({ navigation }) {
       width: "85%",
     },
     squareWhatsapp: {
+      flexDirection: "row",
       borderColor: state.whatsappOnFocus ? COLORS.button : COLORS.lightgray,
       borderWidth: 2,
       borderRadius: 6,
       alignItems: "left",
       width: "85%",
+    },
+    WhatsappIcon: {
+      marginTop: "auto",
+      marginBottom: "auto",
+      marginLeft: 10,
     },
     linkQr: {
       fontSize: 18,
@@ -220,7 +228,7 @@ export default function Compartir({ navigation }) {
           </View>
           <Pressable
             style={styles.buttonQR}
-            onPress={() => navigation.navigate("PagoProcesado")}
+            onPress={() => navigation.navigate("QrCode")}
           >
             <FontAwesomeIcon icon={faQrcode} size={15} color={COLORS.white} />
           </Pressable>
@@ -228,7 +236,14 @@ export default function Compartir({ navigation }) {
 
         <View style={styles.row}>
           <View style={styles.squareMail}>
+            <FontAwesomeIcon
+              icon={faMailForward}
+              size={30}
+              style={styles.WhatsappIcon}
+              color="#035AC5"
+            />
             <TextInput
+              keyboardType="email-address"
               onFocus={() =>
                 setState({ whatsappOnFocus: false, mailOnFocus: true })
               }
@@ -240,7 +255,15 @@ export default function Compartir({ navigation }) {
 
         <View style={styles.row}>
           <View style={styles.squareWhatsapp}>
+            <FontAwesomeIcon
+              icon={faWhatsapp}
+              size={30}
+              style={styles.WhatsappIcon}
+              color="#25D366"
+            />
             <TextInput
+              keyboardType="numeric"
+              textContentType="number"
               onFocus={() =>
                 setState({ whatsappOnFocus: true, mailOnFocus: false })
               }

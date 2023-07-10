@@ -7,6 +7,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Compartir from "./src/screens/Compartir";
 import SolicitarPago from "./src/screens/SolicitarPago";
 import PagoProcesado from "./src/screens/PagoProcesado";
+import QrCode from "./src/screens/QrCode";
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +26,7 @@ export default function App() {
           <Stack.Screen name="Compartir" component={Compartir} />
           <Stack.Screen name="SolicitarPago" component={SolicitarPago} />
           <Stack.Screen name="PagoProcesado" component={PagoProcesado} />
+          <Stack.Screen name="QrCode" component={QrCode} />
         </Stack.Navigator>
       </ContextProvider>
       <StatusBar style="auto" />
