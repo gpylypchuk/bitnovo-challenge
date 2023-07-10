@@ -1,5 +1,12 @@
 import React, { useEffect } from "react";
-import { View, Text, StyleSheet, Pressable, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  TextInput,
+  Linking,
+} from "react-native";
 import { COLORS } from "../../constants";
 import Context from "../context/Context";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -11,6 +18,8 @@ export default function Compartir({ navigation }) {
   const { context, setContext } = React.useContext(Context);
 
   const initialState = {
+    phoneNumber: "",
+    mail: "",
     mailOnFocus: false,
     whatsappOnFocus: false,
   };
@@ -44,7 +53,7 @@ export default function Compartir({ navigation }) {
       identifier: data.identifier,
     });
 
-    ws = await new WebSocket(
+    ws = new WebSocket(
       `wss://payments.smsdata.com/ws/merchant/${data.identifier}`
     );
 
@@ -254,16 +263,31 @@ export default function Compartir({ navigation }) {
             <TextInput
               keyboardType="email-address"
               onFocus={() =>
-                setState({ whatsappOnFocus: false, mailOnFocus: true })
+                setState({
+                  ...state,
+                  whatsappOnFocus: false,
+                  mailOnFocus: true,
+                })
               }
+              onChange={(e) => {
+                setState({ ...state, mail: e.nativeEvent.text });
+              }}
               placeholder="geronimo@gmail.com"
               style={styles.mail}
-            ></TextInput>
-            {state.mailOnFocus && (
-              <Pressable style={styles.onFocusSend}>
-                <Text style={styles.onFocusSend}>Enviar</Text>
-              </Pressable>
-            )}
+            />
+            {state.mailOnFocus &&
+              context.payLink != "https://www.bitnovo.com/" && (
+                <Pressable
+                  style={styles.onFocusSend}
+                  onPress={() =>
+                    Linking.openURL(
+                      `mailto:${state.mail}?subject=Payment&body=${context.payLink}`
+                    )
+                  }
+                >
+                  <Text style={styles.onFocusSend}>Enviar</Text>
+                </Pressable>
+              )}
           </View>
         </View>
 
@@ -277,18 +301,32 @@ export default function Compartir({ navigation }) {
             />
             <TextInput
               keyboardType="numeric"
-              textContentType="number"
               onFocus={() =>
-                setState({ whatsappOnFocus: true, mailOnFocus: false })
+                setState({
+                  ...state,
+                  whatsappOnFocus: true,
+                  mailOnFocus: false,
+                })
               }
+              onChange={(e) => {
+                setState({ ...state, phoneNumber: e.nativeEvent.text });
+              }}
               placeholder="Enviar por Whatsapp"
               style={styles.whatsapp}
-            ></TextInput>
-            {state.whatsappOnFocus && (
-              <Pressable style={styles.onFocusSend}>
-                <Text style={styles.onFocusSend}>Enviar</Text>
-              </Pressable>
-            )}
+            />
+            {state.whatsappOnFocus &&
+              context.payLink != "https://www.bitnovo.com/" && (
+                <Pressable
+                  style={styles.onFocusSend}
+                  onPress={() => {
+                    Linking.openURL(
+                      `https://wa.me/${state.phoneNumber}?text=${context.payLink}`
+                    );
+                  }}
+                >
+                  <Text style={styles.onFocusSend}>Enviar</Text>
+                </Pressable>
+              )}
           </View>
         </View>
 
