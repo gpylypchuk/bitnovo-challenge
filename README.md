@@ -8,6 +8,7 @@ This is the [Figma](https://www.figma.com/file/k2Z7oEb4oJX8AO31qlmAPT/Prueba-T%C
 
 ### Demo 👀
 Some images when you're running the app.
+
 <img src="https://github.com/gpylypchuk/bitnovo-challenge/assets/68362755/908e4e2d-d553-4ccc-86c9-3aff8808d276" width="150">
 <img src="https://github.com/gpylypchuk/bitnovo-challenge/assets/68362755/4c7d0f55-2479-4f3b-a91c-6cc29ce30735" width="150">
 <img src="https://github.com/gpylypchuk/bitnovo-challenge/assets/68362755/0cc9127e-dae3-43f7-b399-34091452a27e" width="150">
