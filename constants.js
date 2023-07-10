@@ -47,3 +47,18 @@ export const API_URL = "https://payments.smsdata.com/api/v1/orders/";
 // const res = await fetch("https://payments.smsdata.com/api/v1/currencies", xd);
 // const dataCurrency = await res.json();
 // console.log(dataCurrency[2]);
+
+// EXAMPLE RESPONSE
+
+// address: "0x523c8De67ECA2079A03B10082cB93679f052c5cD"
+// expected_input_amount: 0.0034022
+// fiat: "EUR"
+// identifier: "9d060d1d-16c9-4e4d-90b4-07ff4e893b36"
+// input_currency: "ETH_TEST3"
+// language: "es"
+// notes: null
+// payment_uri: "ethereum:0x523c8De67ECA2079A03B10082cB93679f052c5cD?amount=0.0034022"
+// rate: 1469.64
+// reference: null
+// tag_memo: ""
+// web_url: "https://paytest.bitnovo.com/16c91dbc/"
