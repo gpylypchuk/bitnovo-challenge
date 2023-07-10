@@ -4,7 +4,7 @@ import { COLORS } from "../../constants";
 import Context from "../context/Context";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faQrcode } from "@fortawesome/free-solid-svg-icons";
-import { API_URL } from "../../constants";
+import { API_URL, DEVICE_ID } from "../../constants";
 
 export default function Compartir({ navigation }) {
   const { context, setContext } = React.useContext(Context);
@@ -21,6 +21,7 @@ export default function Compartir({ navigation }) {
   const BODY_SAMPLE = {
     expected_output_amount: context.amount,
     input_currency: "ETH_TEST3",
+    fiat: context.currency,
   };
 
   const fetchPayLink = async () => {
@@ -28,7 +29,7 @@ export default function Compartir({ navigation }) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-Device-Id": "7c519494-a87a-4760-942f-4257205896de",
+        "X-Device-Id": DEVICE_ID,
       },
       body: JSON.stringify(BODY_SAMPLE),
     };
@@ -58,6 +59,43 @@ export default function Compartir({ navigation }) {
   }, []);
 
   const styles = StyleSheet.create({
+    newPayment: {
+      alignItems: "center",
+      justifyContent: "center",
+      marginTop: 25,
+    },
+    shareText: {
+      fontSize: 16,
+      fontWeight: "400",
+      color: COLORS.button,
+    },
+    buttonShare: {
+      alignItems: "center",
+      justifyContent: "center",
+      borderRadius: 6,
+      paddingLeft: 24,
+      paddingRight: 24,
+      paddingTop: 18,
+      paddingBottom: 18,
+      borderColor: COLORS.button,
+      borderWidth: 1,
+      width: 354,
+      height: 56,
+      marginTop: 25,
+    },
+    buttonPasarela: {
+      alignItems: "center",
+      justifyContent: "center",
+      borderRadius: 6,
+      paddingLeft: 24,
+      paddingRight: 24,
+      paddingTop: 18,
+      paddingBottom: 18,
+      backgroundColor: COLORS.button,
+      width: 354,
+      height: 56,
+      marginTop: 100,
+    },
     squareQr: {
       borderColor: COLORS.lightgray,
       borderWidth: 2,
@@ -178,7 +216,7 @@ export default function Compartir({ navigation }) {
 
         <View style={styles.row}>
           <View style={styles.squareQr}>
-            <Text style={styles.linkQr}>{context.payLink}</Text>
+            <Text style={styles.linkQr}>{context.payLink.slice(0, 26)}...</Text>
           </View>
           <Pressable
             style={styles.buttonQR}
@@ -210,6 +248,35 @@ export default function Compartir({ navigation }) {
               style={styles.whatsapp}
             ></TextInput>
           </View>
+        </View>
+
+        <View>
+          <Pressable
+            style={styles.buttonPasarela}
+            onPress={() => navigation.navigate("Inicio")}
+          >
+            <Text style={{ color: COLORS.white, fontSize: 18 }}>
+              Ir a pasarela →
+            </Text>
+          </Pressable>
+        </View>
+
+        <View>
+          <Pressable
+            style={styles.buttonShare}
+            onPress={() => navigation.navigate("Inicio")}
+          >
+            <Text style={styles.shareText}>Compartir 📩</Text>
+          </Pressable>
+        </View>
+
+        <View>
+          <Pressable
+            style={styles.newPayment}
+            onPress={() => navigation.navigate("Inicio")}
+          >
+            <Text style={styles.shareText}>Solicitar nuevo pago</Text>
+          </Pressable>
         </View>
       </View>
     </View>

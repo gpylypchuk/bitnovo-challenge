@@ -7,6 +7,8 @@ export const COLORS = {
   textGray: "#758192",
 };
 
+export const DEVICE_ID = "7c519494-a87a-4760-942f-4257205896de";
+
 export const API_URL = "https://payments.smsdata.com/api/v1/orders/";
 
 // const BODY_SAMPLE = {
