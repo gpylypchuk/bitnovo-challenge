@@ -122,6 +122,13 @@ export default function Compartir({ navigation }) {
       alignItems: "left",
       width: "85%",
     },
+    onFocusSend: {
+      marginTop: "auto",
+      marginBottom: "auto",
+      marginLeft: "auto",
+      marginRight: 10,
+      color: COLORS.button,
+    },
     WhatsappIcon: {
       marginTop: "auto",
       marginBottom: "auto",
@@ -250,6 +257,11 @@ export default function Compartir({ navigation }) {
               placeholder="geronimo@gmail.com"
               style={styles.mail}
             ></TextInput>
+            {state.mailOnFocus && (
+              <Pressable style={styles.onFocusSend}>
+                <Text style={styles.onFocusSend}>Enviar</Text>
+              </Pressable>
+            )}
           </View>
         </View>
 
@@ -267,9 +279,14 @@ export default function Compartir({ navigation }) {
               onFocus={() =>
                 setState({ whatsappOnFocus: true, mailOnFocus: false })
               }
-              placeholder="Enviar a numero de Whatsapp"
+              placeholder="Enviar por Whatsapp"
               style={styles.whatsapp}
             ></TextInput>
+            {state.whatsappOnFocus && (
+              <Pressable style={styles.onFocusSend}>
+                <Text style={styles.onFocusSend}>Enviar</Text>
+              </Pressable>
+            )}
           </View>
         </View>
 
