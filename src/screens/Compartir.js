@@ -10,7 +10,11 @@ import {
 import { COLORS } from "../../constants";
 import Context from "../context/Context";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faQrcode, faMailForward } from "@fortawesome/free-solid-svg-icons";
+import {
+  faQrcode,
+  faMailForward,
+  faCopy,
+} from "@fortawesome/free-solid-svg-icons";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { API_URL, DEVICE_ID } from "../../constants";
 
@@ -106,32 +110,32 @@ export default function Compartir({ navigation }) {
       backgroundColor: COLORS.button,
       width: 354,
       height: 56,
-      marginTop: 100,
     },
     squareQr: {
+      flexDirection: "row",
       borderColor: COLORS.lightgray,
       borderWidth: 2,
       borderRadius: 6,
       alignItems: "center",
       justifyContent: "center",
       flex: 1,
-      marginLeft: 30,
+      marginLeft: "auto",
     },
     squareMail: {
       flexDirection: "row",
       borderColor: state.mailOnFocus ? COLORS.button : COLORS.lightgray,
       borderWidth: 2,
       borderRadius: 6,
-      alignItems: "left",
-      width: "85%",
+      alignItems: "flex-start",
+      flex: 1,
     },
     squareWhatsapp: {
       flexDirection: "row",
       borderColor: state.whatsappOnFocus ? COLORS.button : COLORS.lightgray,
       borderWidth: 2,
       borderRadius: 6,
-      alignItems: "left",
-      width: "85%",
+      alignItems: "flex-start",
+      flex: 1,
     },
     onFocusSend: {
       marginTop: "auto",
@@ -170,7 +174,8 @@ export default function Compartir({ navigation }) {
     container: {
       alignItems: "center",
       justifyContent: "center",
-      marginTop: 80, // fix
+      marginTop: "15%",
+      width: "90%",
     },
     amountToPay: {
       fontSize: 25,
@@ -198,7 +203,7 @@ export default function Compartir({ navigation }) {
       alignItems: "center",
       gap: 20,
       justifyContent: "center",
-      marginBottom: "10%",
+      marginBottom: "5%",
     },
     buttonQR: {
       alignItems: "center",
@@ -207,6 +212,15 @@ export default function Compartir({ navigation }) {
       padding: 16,
       backgroundColor: COLORS.button,
       marginRight: 30,
+    },
+    buttonsFooter: {
+      alignItems: "center",
+      justifyContent: "center",
+      position: "relative",
+      bottom: "-10%",
+    },
+    copyIcon: {
+      marginLeft: 20,
     },
   });
 
@@ -242,7 +256,13 @@ export default function Compartir({ navigation }) {
 
         <View style={styles.row}>
           <View style={styles.squareQr}>
-            <Text style={styles.linkQr}>{context.payLink.slice(0, 26)}...</Text>
+            <FontAwesomeIcon
+              icon={faCopy}
+              size={30}
+              style={styles.copyIcon}
+              color="#035AC5"
+            />
+            <Text style={styles.linkQr}>{context.payLink.slice(0, 20)}...</Text>
           </View>
           <Pressable
             style={styles.buttonQR}
@@ -330,33 +350,28 @@ export default function Compartir({ navigation }) {
           </View>
         </View>
 
-        <View>
-          <Pressable
-            style={styles.buttonPasarela}
-            onPress={() => navigation.navigate("Inicio")}
-          >
-            <Text style={{ color: COLORS.white, fontSize: 18 }}>
-              Ir a pasarela →
-            </Text>
-          </Pressable>
-        </View>
-
-        <View>
-          <Pressable
-            style={styles.buttonShare}
-            onPress={() => navigation.navigate("Inicio")}
-          >
-            <Text style={styles.shareText}>Compartir 📩</Text>
-          </Pressable>
-        </View>
-
-        <View>
-          <Pressable
-            style={styles.newPayment}
-            onPress={() => navigation.navigate("Inicio")}
-          >
-            <Text style={styles.shareText}>Solicitar nuevo pago</Text>
-          </Pressable>
+        <View style={styles.buttonsFooter}>
+          <View style={styles.buttonPasarela}>
+            <Pressable
+              onPress={() => {
+                Linking.openURL(context.payLink);
+              }}
+            >
+              <Text style={{ color: COLORS.white, fontSize: 18 }}>
+                Ir a pasarela →
+              </Text>
+            </Pressable>
+          </View>
+          <View style={styles.buttonShare}>
+            <Pressable onPress={() => navigation.navigate("Inicio")}>
+              <Text style={styles.shareText}>Compartir 📩</Text>
+            </Pressable>
+          </View>
+          <View style={styles.newPayment}>
+            <Pressable onPress={() => navigation.navigate("Inicio")}>
+              <Text style={styles.shareText}>Solicitar nuevo pago</Text>
+            </Pressable>
+          </View>
         </View>
       </View>
     </View>

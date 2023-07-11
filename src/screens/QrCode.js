@@ -69,9 +69,9 @@ export default function QrCode({ navigation }) {
       </Text>
       <Pressable
         style={styles.buttonPrint}
-        onPress={() => navigation.navigate("Inicio")}
+        onPress={() => navigation.navigate("Compartir")}
       >
-        <Text style={styles.textPay}>Imprimir</Text>
+        <Text style={styles.textPay}>🖨️ Imprimir</Text>
       </Pressable>
       <StatusBar style="light" />
     </View>
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     borderRadius: 24,
     marginHorizontal: 10,
-    marginTop: 25,
+    marginTop: "0%",
     marginBottom: 20,
     backgroundColor: COLORS.button,
   },
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    paddingTop: 100,
+    paddingTop: "12%",
     backgroundColor: COLORS.text,
   },
   subText: {
